@@ -15,18 +15,19 @@ namespace Quest
         //  So it can be read and changed by any code in the application
         public Robe ColorfulRobe { get; set; }
         public int Awesomeness { get; set; }
+        public Hat ShinyHat { get; set; }
 
         public string GetDescription()
         {
-            return ($"The Intrepid Adventurer {Name}, donned a illustrious {ColorfulRobe.Colors[0]}, {ColorfulRobe.Colors[1]}, and {ColorfulRobe.Colors[2]} colored robe with a magnificent length of {ColorfulRobe.Length} inches\n");
+            return ($"The Intrepid Adventurer {Name}, donned an illustrious {ColorfulRobe.Colors[0]}, {ColorfulRobe.Colors[1]}, and {ColorfulRobe.Colors[2]} colored robe with a magnificent length of {ColorfulRobe.Length} inches.\nThe Hat perched upon the head of {Name} was nothing but {ShinyHat.GetShininessDescription()}.\nIt's Adventure Time!\n");
         }
 
         // A constructor to make a new Adventurer object with a given name
-        public Adventurer(string name, Robe colorfulRobe)
+        public Adventurer(string name, Robe colorfulRobe, Hat shinyHat)
         {
             Name = name;
-            // not sure about this 
             ColorfulRobe = colorfulRobe;
+            ShinyHat = shinyHat;
             Awesomeness = 50;
 
 
