@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Quest
 {
@@ -27,6 +28,13 @@ namespace Quest
         // This method will take an Adventurer object and make that Adventurer perform the challenge
         public void RunChallenge(Adventurer adventurer)
         {
+
+            if (adventurer.Name == "")
+            {
+                Console.WriteLine("Enter your name");
+                adventurer.Name = Console.ReadLine();
+            }
+
             Console.Write($"{_text}: ");
             string answer = Console.ReadLine();
 

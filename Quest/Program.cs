@@ -43,8 +43,15 @@ namespace Quest
             int maxAwesomeness = 100;
 
             // Make a new "Adventurer" object using the "Adventurer" class
-            Adventurer theAdventurer = new Adventurer("Jack");
-
+            Robe RobeOfHolding = new Robe(
+                new List<string>() { "Blue", "Green", "Gold" },
+                48
+            );
+            Adventurer theAdventurer = new Adventurer(
+                "",
+                RobeOfHolding
+            );
+            Console.Write(theAdventurer.GetDescription());
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
             List<Challenge> challenges = new List<Challenge>()
@@ -66,15 +73,66 @@ namespace Quest
             // And praises or humiliates them accordingly
             if (theAdventurer.Awesomeness >= maxAwesomeness)
             {
-                Console.WriteLine("YOU DID IT! You are truly awesome!");
+                Console.WriteLine("YOU DID IT! You are truly awesome!\n   ...Triumphant Music Plays...");
+
+                Console.WriteLine("Now would you like to embark on another adventurer?\n Type Yes to embark or enter quit");
+                string Input = Console.ReadLine();
+
+                if (Input.Equals(""))
+                {
+                    Environment.Exit(-1);
+                }
+                else
+                {
+                    foreach (Challenge challenge in challenges)
+                    {
+                        challenge.RunChallenge(theAdventurer);
+                    }
+
+                }
+
             }
+
+
             else if (theAdventurer.Awesomeness <= minAwesomeness)
             {
                 Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
+
+                Console.WriteLine("Now would you like to embark on another adventurer?\n Type Yes to embark or enter quit");
+                string Input = Console.ReadLine();
+
+                if (Input.Equals(""))
+                {
+                    Environment.Exit(-1);
+                }
+                else
+                {
+                    foreach (Challenge challenge in challenges)
+                    {
+                        challenge.RunChallenge(theAdventurer);
+                    }
+
+                }
             }
             else
             {
-                Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
+                Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight. \nMaybe an easier quest would suit you...");
+
+                Console.WriteLine("Now would you like to embark on another adventurer?\n Type Yes to embark or enter quit");
+                string Input = Console.ReadLine();
+
+                if (Input.Equals(""))
+                {
+                    Environment.Exit(-1);
+                }
+                else
+                {
+                    foreach (Challenge challenge in challenges)
+                    {
+                        challenge.RunChallenge(theAdventurer);
+                    }
+
+                }
             }
         }
     }
