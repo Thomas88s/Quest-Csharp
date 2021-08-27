@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace Quest
 {
     // An instance of the Adventurer class is an object that will undergo some challenges
@@ -6,18 +9,31 @@ namespace Quest
         // This is an "immutable" property. It only has a "get".
         // The only place the Name can be set is in the Adventurer constructor
         // Note: the constructor is defined below.
-        public string Name { get; }
+        public string Name { get; set; }
 
         // This is a mutable property it has a "get" and a "set"
         //  So it can be read and changed by any code in the application
+        public Robe ColorfulRobe { get; set; }
         public int Awesomeness { get; set; }
 
+        public string GetDescription()
+        {
+            return ($"The Intrepid Adventurer {Name}, donned a illustrious {ColorfulRobe.Colors[0]}, {ColorfulRobe.Colors[1]}, and {ColorfulRobe.Colors[2]} colored robe with a magnificent length of {ColorfulRobe.Length} inches\n");
+        }
+
         // A constructor to make a new Adventurer object with a given name
-        public Adventurer(string name)
+        public Adventurer(string name, Robe colorfulRobe)
         {
             Name = name;
+            // not sure about this 
+            ColorfulRobe = colorfulRobe;
             Awesomeness = 50;
+
+
         }
+
+
+
 
 
         // This method returns a string that describes the Adventurer's status
@@ -43,7 +59,7 @@ namespace Quest
                 status = "not gonna make it";
             }
 
-            return $"Adventurer, {Name}, is {status}";
+            return $"The Adventurer, {Name}, is {status}";
         }
     }
 }
