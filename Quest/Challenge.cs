@@ -29,6 +29,7 @@ namespace Quest
         // This method will take an Adventurer object and make that Adventurer perform the challenge
         public void RunChallenge(Adventurer theAdventurer)
         {
+            int challengeReceived = 0;
             int nameNotEntered = 0;
             void EnterName()
             {
@@ -36,11 +37,7 @@ namespace Quest
                 {
                     Console.WriteLine("Enter your name");
                     theAdventurer.Name = Console.ReadLine();
-                    Console.WriteLine(@"  +     +            +      +     + +       +  ");
-                    Console.WriteLine(@"/\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\");
-                    Console.WriteLine(@"|_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|");
-                    Console.WriteLine(@"  +        +       ++       +             +    ");
-                    Console.WriteLine(theAdventurer.GetDescription());
+
                     if (theAdventurer.Name == "")
                     {
                         nameNotEntered++;
@@ -65,9 +62,17 @@ namespace Quest
 
             }
             EnterName();
+            if (challengeReceived == 0)
+            {
+                Console.WriteLine(@"  +     +            +      +     + +       +  ");
+                Console.WriteLine(@"/\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\");
+                Console.WriteLine(@"|_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|");
+                Console.WriteLine(@"  +        +       ++       +             +    ");
+                Console.WriteLine(theAdventurer.GetDescription());
+            }
+            challengeReceived++;
             Console.Write($"{_text}: ");
             string answer = Console.ReadLine();
-
             int numAnswer;
             bool isNumber = int.TryParse(answer, out numAnswer);
 
