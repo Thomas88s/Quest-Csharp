@@ -25,19 +25,54 @@ namespace Quest
             _awesomenessChange = awesomenessChange;
         }
 
+
         // This method will take an Adventurer object and make that Adventurer perform the challenge
         public void RunChallenge(Adventurer theAdventurer)
         {
-
-            if (theAdventurer.Name == "")
+            int challengeReceived = 0;
+            int nameNotEntered = 0;
+            void EnterName()
             {
-                Console.WriteLine("Enter your name");
-                theAdventurer.Name = Console.ReadLine();
+                if (theAdventurer.Name == "")
+                {
+                    Console.WriteLine("Enter your name");
+                    theAdventurer.Name = Console.ReadLine();
+
+                    if (theAdventurer.Name == "")
+                    {
+                        nameNotEntered++;
+
+                        if (nameNotEntered == 2)
+                        {
+
+
+                            Console.WriteLine("\nI picked a name for you 'ButterCup'. MWAHAHAHA\n");
+
+                            theAdventurer.Name = "ButterCup";
+                            Console.WriteLine(@"  +     +            +      +     + +       +  ");
+                            Console.WriteLine(@"/\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\");
+                            Console.WriteLine(@"|_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|");
+                            Console.WriteLine(@"  +        +       ++       +             +    ");
+                            Console.WriteLine(theAdventurer.GetDescription());
+                        }
+                        EnterName();
+                    }
+
+                }
+
             }
-            Console.WriteLine(theAdventurer.GetDescription());
+            EnterName();
+            if (challengeReceived == 0)
+            {
+                Console.WriteLine(@"  +     +            +      +     + +       +  ");
+                Console.WriteLine(@"/\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\  /\/\/\");
+                Console.WriteLine(@"|_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|  |_<>_|");
+                Console.WriteLine(@"  +        +       ++       +             +    ");
+                Console.WriteLine(theAdventurer.GetDescription());
+            }
+            challengeReceived++;
             Console.Write($"{_text}: ");
             string answer = Console.ReadLine();
-
             int numAnswer;
             bool isNumber = int.TryParse(answer, out numAnswer);
 
@@ -45,8 +80,9 @@ namespace Quest
             if (isNumber && numAnswer == _correctAnswer)
             {
                 Console.WriteLine("Well Done!");
-
                 // Note how we access an Adventurer object's property
+                theAdventurer.CorrectAnswers++;
+
                 theAdventurer.Awesomeness += _awesomenessChange;
             }
             else
